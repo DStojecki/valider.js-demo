@@ -1,5 +1,6 @@
 <template>
     <form class="valider-form">
+        <h3>Type something in inputs</h3>
         <div class="valider-form__group">
             <label for="">First name</label>
             <input data-required data-minlength="3" class="my-input" />
@@ -13,8 +14,12 @@
             </select>
         </div>
         <div class="valider-form__group">
-            <label for="">Second name</label>
-            <input data-required data-maxlength="2" class="my-input" />
+            <label for="">Custom validation input</label>
+            <input
+                data-custom="^[a-zA-Z]+$"
+                data-custom-err="Custom err based on regexp (in this case letters only)"
+                class="my-input"
+            />
         </div>
         <div class="valider-form__group">
             <label for="">Age</label>
@@ -90,9 +95,15 @@ onMounted(() => {
 const check = () => {
     if (data.valider.check()) {
         console.log("Validation successfull");
+    } else {
+        console.log("Validation failed!");
     }
 };
 </script>
 
 <style scoped>
+h3 {
+    font-weight: 500;
+    color: #333;
+}
 </style>
